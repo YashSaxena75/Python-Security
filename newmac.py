@@ -7,7 +7,10 @@ import re
 def oldmac(interface):
 	h=subprocess.check_output(["ifconfig", options.interface])
 	n=re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",h)
-	return n.group(0)
+	if n:
+		return n.group(0)
+	else:
+		print("Can't fetch the MAC")
 
 
 
@@ -42,7 +45,7 @@ options=parser()
 changemac(options.interface)
 omac=oldmac(options.interface)
 cmac=mac(options.interface)
-print("Current MAC:"+cmac)
+print("Current MAC:",cmac)
 
 if omac==cmac:
 	print("[+] MAC changed.")
