@@ -1,0 +1,22 @@
+import requests
+ul="https://zsecurity.org"
+ull=[]
+import urlparse
+
+def url(u):
+        resp=requests.get(ul)
+        import re
+        return re.findall('(?:href=")(.*?)"',resp.content)
+
+def crawl(ul):
+        href=url(ul)
+        for link in href:
+                link=urlparse.urljoin(ul,link)
+                if '#' in link:
+                        link=link.split('#')[0]
+
+                if ul in link and link not in ul:
+                        ull.append(link)
+                        print(link)
+                        crawl(link)
+crawl(ul)
