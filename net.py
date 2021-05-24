@@ -3,7 +3,7 @@ import optparse
 import subprocess
 import os
 
-try:
+'''try:
 	if not os.path.exists('/root/Desktop/i'):
 		os.system('/usr/sbin/arp -n >> /root/Desktop/i')
 except Exception as e:
@@ -20,7 +20,7 @@ elif int(r)>=128 and int(r)<=191:
 elif int(r)>=192 and int(r)<=223:
 	x=x+"/24"
 x=x.replace(" ",'') 
-
+'''
 #print(x)
 def scan(ip):
 	req=scapy.ARP(pdst=ip)
